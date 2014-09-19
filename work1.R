@@ -1,13 +1,13 @@
 
 #set the working dir
-setwd("~/1.WebSite/1.Data_Posts/3.Lending_club")
+setwd("~/2.Github/2.DataSci_Repos/1.Lending_Club/Lending_Club_Data_Analysis")
 
 #laod some packages
 library(ggplot2)
 library(maps)
 
 #load some data
-loans <- read.csv("SmallLoan.csv", header=TRUE, skip = 1)
+loans <- read.csv("SmallLoan.csv", header=TRUE, stringsAsFactors=FALSE, skip = 1)
 
 #get a summery
 summary(loans)
@@ -59,11 +59,27 @@ plot(data.frame(loans$grade , loans$funded_amnt_inv))
 
 #------home_ownership
 
+plot(data.frame(loans$grade , loans$funded_amnt_inv))
 
 
 
 
-# then at the end let's build this crazy model for 
+#ok so we have explored the intersting perdicters
+#now it's time to start asking some intesting quesitons
+
+#Question #1: can we perdict 
+
+#let's logistic regress 
+
+#let's penalize regress
+
+#let's random forest 
+
+
+#Question #2: can we perdic the sucess of a loan
+
+
+
 
 
 

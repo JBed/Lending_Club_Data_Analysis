@@ -93,8 +93,14 @@ printcp(rf2) # display the results
 plotcp(rf2) # visualize cross-validation results 
 summary(rf2) # detailed summary of splits
 
+pfit<- prune(rf2, cp=0.01160389) # from cptable   
+plot(pfit)
 
+library(party)
 
+fit <- ctree(loans$annual_inc ~ loans$funded_amnt_inv)
+
+plot(fit)
 
 #---is_inc_v
 #is income verifyed

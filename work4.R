@@ -20,8 +20,33 @@ is.factor(loans$is_inc_v) #stringsAsFactor worked
 summary(loans$loan_status)
 
 # build logistic regression model using the glm
-fit <- glm(loan_status ~  loan_amnt + term + int_rate + installment + home_ownership + annual_inc + is_inc_v + purpose , data=loans, family=binomial())
+fit <- glm(loan_status ~  loan_amnt + term + int_rate + installment + home_ownership + annual_inc + is_inc_v + purpose , data=loans, family=binomial(link=logit))
 summary(fit) # show results
 plot(fit)
+
+#now let's compute some bic
+library("BMA")
+
+output <- bic.glm(loan_status ~  loan_amnt + term + int_rate + installment + annual_inc + is_inc_v , data=loans, glm.family="binomial")
+                      
+warnings()
+summary(output)
+imageplot.bma(output)
+
+#nwo let's say that we have a new model
+
+
+
+#now let's also make a random forrest, which is uninformative but we'll do it  anyway
+
+
+
+#now let's compair
+
+
+
+#and were good. 
+
+
 
 

@@ -2,7 +2,7 @@
 
 #load the data 
 setwd("~/1.WebSite/8.DataSci/LendingClub/2014-Now")
-loans <- read.csv("LoanStats3c_securev1.csv", header=TRUE, stringsAsFactors=TRUE, skip=1)
+loans <- read.csv("small.csv", header=TRUE, stringsAsFactors=TRUE, skip=1)
 
 #make the factors
 loans$term <- as.factor(loans$term)
@@ -14,13 +14,14 @@ loans$loan_status <- as.factor(loans$loan_status)
 loans$purpose <- as.factor(loans$purpose)
 is.factor(loans$is_inc_v) #stringsAsFactor worked
 
+#PART1 try to perdic who pays
 
+# take a look at what we are trying to perdict
+summary(loans$loan_status)
 
 # build logistic regression model using the glm
-
-fit <- glm(  , data=loans, family=binomial())
-
-
+fit <- glm(loan_status ~  loan_amnt + term + int_rate + installment + home_ownership + annual_inc + is_inc_v + purpose , data=loans, family=binomial())
 summary(fit) # show results
+plot(fit)
 
 

@@ -14,5 +14,13 @@ loans$loan_status <- as.factor(loans$loan_status)
 loans$purpose <- as.factor(loans$purpose)
 is.factor(loans$is_inc_v) #stringsAsFactor worked
 
-#ok now get to work, 
+
+
+# build logistic regression model using the glm
+
+fit <- glm(  , data=loans, family=binomial())
+
+
+summary(fit) # show results
+
 

@@ -34,9 +34,18 @@ t.test(loans$funded_amnt_inv~loans$term)
 #Chi-squared test is really what we should be doing
 wald.test(b = coef(mylogit), Sigma = vcov(mylogit), Terms = 4:6)
 
+
+
 #let;s do some logistic regression for fun
+loans$term <- as.factor(loans$term)
+fit <- glm(loans$term ~ loans$funded_amnt_inv  , data=loans,family=binomial())
+
+
 library(glm2)
 fit1 <- glm(loans$term ~ loans$funded_amnt_inv, family=binomial(link="logit"), control=glm.control(trace=TRUE))
+
+
+
 
 
 

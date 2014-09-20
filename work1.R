@@ -45,7 +45,7 @@ plot(data.frame(loans$int_rate , loans$funded_amnt_inv))
 
 #now let's do some statistics
 
-
+#> glm(formula, family, data, weights, subset, ...)
 
 
 #-----looking at intereste rate and grade
@@ -68,12 +68,9 @@ plot(data.frame(loans$home_ownership , loans$funded_amnt_inv))
 plot(data.frame(loans$annual_inc , loans$funded_amnt_inv))
 #deff signal here
 
-#lets regress
+#lets lm
 linMod <- lm(loans$annual_inc ~ loans$funded_amnt_inv )
 plot(linMod)
-
-
-#lets glm
 
 
 #let's random forrest
@@ -96,24 +93,42 @@ summary(rf2) # detailed summary of splits
 pfit<- prune(rf2, cp=0.01160389) # from cptable   
 plot(pfit)
 
+#I like party
 library(party)
-
 fit <- ctree(loans$annual_inc ~ loans$funded_amnt_inv)
-
 plot(fit)
+
+
+
 
 #---is_inc_v
 #is income verifyed
 
+plot(data.frame(loans$is_inc_v , loans$funded_amnt_inv))
+#deff signal here
 
-
+plot(data.frame(loans$is_inc_v , loans$loan_status))
+#some signal
 
 
 #---purpose
 
 
+plot(data.frame(loans$purpose , loans$funded_amnt_inv))
+plot(data.frame(loans$addr_state , loans$funded_amnt_inv))
+#not what i was expecting
+
+#--total_pymnt
+
+plot(data.frame(loans$total_pymnt, loans$funded_amnt_inv))
+
+lm(loans$total_pymnt~loans$funded_amnt_inv)
 
 
+
+#---loan_status
+
+plot(data.frame(loans$loan_status, loans$funded_amnt_inv))
 
 
 
@@ -130,16 +145,5 @@ plot(fit)
 
 
 #Question #2: can we perdic the sucess of a loan
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -23,26 +23,21 @@ plot(data.frame(loans$loan_amnt,loans$funded_amnt_inv))
 
 #term vs funded amout
 plot(data.frame(loans$term , loans$funded_amnt_inv))
-
-
 #it looks like 60 months term loans were for more money.
 #but let's compute a P-value to check the significatch. 
 
-t.test(loans$funded_amnt_inv~loans$term)
+#t.test(loans$funded_amnt_inv~loans$term)
 #p-value = 0.005345, this is acually not corrent
-
-#Chi-squared test is really what we should be doing
-wald.test(b = coef(mylogit), Sigma = vcov(mylogit), Terms = 4:6)
-
 
 
 #let;s do some logistic regression for fun
 loans$term <- as.factor(loans$term)
-fit <- glm(loans$term ~ loans$funded_amnt_inv  , data=loans,family=binomial())
+fit <- glm(loans$term ~ loans$funded_amnt_inv, data=loans,family=binomial())
+summary(fit)
+plot(fit)
 
-
-library(glm2)
-fit1 <- glm(loans$term ~ loans$funded_amnt_inv, family=binomial(link="logit"), control=glm.control(trace=TRUE))
+#let;s compute chi-squared valuse chiseq=  0.004592
+anova(fit,test="Chisq")
 
 
 
@@ -58,23 +53,34 @@ fit1 <- glm(loans$term ~ loans$funded_amnt_inv, family=binomial(link="logit"), c
 plot(data.frame(loans$int_rate , loans$funded_amnt_inv))
 
 #now let's do some statistics
+loans$int_rate <- as.factor(loans$int_rate)
+fit <- glm(loans$int_rate ~ loans$funded_amnt_inv, data=loans,family=binomial())
+summary(fit)
+plot(fit)
 
-#> glm(formula, family, data, weights, subset, ...)
+#let;s compute chi-squared valuse chiseq=  0.007328
+anova(fit,test="Chisq")
+
+
 
 
 #-----looking at intereste rate and grade
 
 #first let's plot 
 plot(data.frame(loans$grade , loans$funded_amnt_inv))
-
-
-#let's do some stats
-
+loans$grade <- as.factor(loans$grade)
+fit <- glm(loans$grade ~ loans$funded_amnt_inv, data=loans,family=binomial())
+summary(fit)
+anova(fit,test="Chisq") #chi 0.28
 
 #------home_ownership
 
 plot(data.frame(loans$home_ownership , loans$funded_amnt_inv))
 #does not look like much signal
+loans$home_ownership <- as.factor(loans$home_ownership)
+fit <- glm(loans$home_ownership ~ loans$funded_amnt_inv, data=loans,family=binomial())
+summary(fit)
+anova(fit,test="Chisq") #chi 0.0188
 
 
 #---annual_inc
@@ -86,7 +92,7 @@ plot(data.frame(loans$annual_inc , loans$funded_amnt_inv))
 linMod <- lm(loans$annual_inc ~ loans$funded_amnt_inv )
 summary(linMod)
 plot(linMod)
-
+t.test(loans$annual_inc, loans$funded_amnt_inv )
 
 #let's random forrest
 library(randomForest)

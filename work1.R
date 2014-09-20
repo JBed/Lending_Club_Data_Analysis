@@ -17,7 +17,7 @@ library(pastecs)
 stat.desc(loans) 
 
 
-#Funded amount seems ot be close to loan amout
+#Funded amount seems to be close to loan amout
 plot(data.frame(loans$loan_amnt,loans$funded_amnt_inv))
 
 
@@ -25,16 +25,21 @@ plot(data.frame(loans$loan_amnt,loans$funded_amnt_inv))
 plot(data.frame(loans$term , loans$funded_amnt_inv))
 
 
-#it looks like 60 months were for more money.
+#it looks like 60 months term loans were for more money.
 #but let's compute a P-value to check the significatch. 
 
 t.test(loans$funded_amnt_inv~loans$term)
-#p-value = 0.005345
+#p-value = 0.005345, this is acually not corrent
 
 #Chi-squared test is really what we should be doing
 wald.test(b = coef(mylogit), Sigma = vcov(mylogit), Terms = 4:6)
 
 #let;s do some logistic regression for fun
+library(glm2)
+fit1 <- glm(loans$term ~ loans$funded_amnt_inv, family=binomial(link="logit"), control=glm.control(trace=TRUE))
+
+
+
 
 #-----looking at fuding amt and interest rate
 
@@ -70,13 +75,14 @@ plot(data.frame(loans$annual_inc , loans$funded_amnt_inv))
 
 #lets lm
 linMod <- lm(loans$annual_inc ~ loans$funded_amnt_inv )
+summary(linMod)
 plot(linMod)
 
 
 #let's random forrest
 library(randomForest)
 rf1 <- randomForest(loans$annual_inc ~ loans$funded_amnt_inv, loans, ntree=50, norm.votes=FALSE)
-rf1
+summary(rf1)
 plot(rf1)
 
 #wiht rpart
@@ -85,17 +91,19 @@ library(rpart)
 
 # grow tree 
 rf2 <- rpart(loans$annual_inc ~ loans$funded_amnt_inv, method="class", data=loans)
-
+summary(rf2)
 printcp(rf2) # display the results 
 plotcp(rf2) # visualize cross-validation results 
 summary(rf2) # detailed summary of splits
 
 pfit<- prune(rf2, cp=0.01160389) # from cptable   
+summary(pfit)
 plot(pfit)
 
 #I like party
 library(party)
 fit <- ctree(loans$annual_inc ~ loans$funded_amnt_inv)
+summary(fit)
 plot(fit)
 
 

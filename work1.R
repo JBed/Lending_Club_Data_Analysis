@@ -126,12 +126,22 @@ plot(fit)
 
 #---is_inc_v
 #is income verifyed
-
-plot(data.frame(loans$is_inc_v , loans$funded_amnt_inv))
 #deff signal here
+plot(data.frame(loans$is_inc_v , loans$funded_amnt_inv))
 
+loans$is_inc_v <- as.factor(loans$is_inc_v)
+fit <- glm(loans$is_inc_v ~ loans$funded_amnt_inv, data=loans,family=binomial())
+summary(fit)
+anova(fit,test="Chisq") #chi 4.212e-05, 
+#you get more money when you verify your income
+
+
+loans$loan_status <- as.factor(loans$loan_status)
 plot(data.frame(loans$is_inc_v , loans$loan_status))
-#some signal
+fit <- glm(loans$loan_status ~ loans$is_inc_v, data=loans,family=binomial())
+summary(fit)
+anova(fit,test="Chisq") #chi 0.2809
+#intersetingly you dont really do that much better at paying back
 
 
 #---purpose
@@ -152,6 +162,11 @@ lm(loans$total_pymnt~loans$funded_amnt_inv)
 #---loan_status
 
 plot(data.frame(loans$loan_status, loans$funded_amnt_inv))
+
+fit <- glm(loans$loan_status ~ loans$funded_amnt_inv, data=loans,family=binomial())
+summary(fit)
+anova(fit,test="Chisq") #chi 0.9865
+#not sure what exaclt to make of this
 
 
 

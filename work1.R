@@ -59,7 +59,31 @@ plot(data.frame(loans$grade , loans$funded_amnt_inv))
 
 #------home_ownership
 
-plot(data.frame(loans$grade , loans$funded_amnt_inv))
+plot(data.frame(loans$home_ownership , loans$funded_amnt_inv))
+#does not look like much signal
+
+
+#---annual_inc
+
+plot(data.frame(loans$annual_inc , loans$funded_amnt_inv))
+#deff signal here
+
+#lets regress
+lm( )
+
+#let's random forrest
+
+
+
+#---is_inc_v
+#is income verifyed
+
+
+
+#---purpose
+
+
+
 
 
 

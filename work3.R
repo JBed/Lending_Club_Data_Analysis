@@ -12,6 +12,11 @@ loans$grade <- as.factor(loans$grade)
 
 loans$emp_length <- as.factor(loans$emp_length)
 loans$is_inc_v <- as.factor(loans$is_inc_v)
+loans$loan_status <- as.factor(loans$loan_status)
+
+loans$grade <- as.factor(loans$grade)
+loans$grade <- as.factor(loans$grade)
+loans$grade <- as.factor(loans$grade)
 loans$grade <- as.factor(loans$grade)
 
 typeof(loans$int_rate)

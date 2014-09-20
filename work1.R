@@ -69,14 +69,37 @@ plot(data.frame(loans$annual_inc , loans$funded_amnt_inv))
 #deff signal here
 
 #lets regress
-lm( )
+linMod <- lm(loans$annual_inc ~ loans$funded_amnt_inv )
+plot(linMod)
+
+
+#lets glm
+
 
 #let's random forrest
+library(randomForest)
+rf1 <- randomForest(loans$annual_inc ~ loans$funded_amnt_inv, loans, ntree=50, norm.votes=FALSE)
+rf1
+plot(rf1)
+
+#wiht rpart
+# Classification Tree with rpart
+library(rpart)
+
+# grow tree 
+rf2 <- rpart(loans$annual_inc ~ loans$funded_amnt_inv, method="class", data=loans)
+
+printcp(rf2) # display the results 
+plotcp(rf2) # visualize cross-validation results 
+summary(rf2) # detailed summary of splits
+
 
 
 
 #---is_inc_v
 #is income verifyed
+
+
 
 
 

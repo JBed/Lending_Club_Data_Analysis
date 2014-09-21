@@ -69,18 +69,46 @@ outa <- roc(lrmMode)
 
 #nwo let's say that we have a new model
 
-
+fitV2 <- glm(loan_status ~  loan_amnt + last_fico_range_high + annual_inc , data=loans, family=binomial(link=logit))
 
 
 #now let's also make a random forrest, which is uninformative but we'll do it  anyway
 
+library(randomForest)
+library(miscTools)
+
+rf1 <- randomForest(  loan_status ~  loan_amnt + last_fico_range_high + annual_inc , data=loans , loans)
+
+library(rpart)
+
+# grow tree 
+rf2 <- rpart( loan_status ~  loan_amnt + last_fico_range_high + annual_inc , data=loans )
+
+printcp(rf2) # display the results 
+plotcp(rf2) # visualize cross-validation results 
+summary(rf2) # detailed summary of splits
+
+# plot tree 
+plot(rf2, uniform=TRUE, 
+     main="Classification Tree for Kyphosis")
+text(fit, use.n=TRUE, all=TRUE, cex=.8)
+
+# create attractive postscript plot of tree 
+post(fit, file = "c:/tree.ps", 
+     title = "Classification Tree for Kyphosis")
 
 
 #now let's compair
 
+fitLC <- glm(loan_status ~ sub_grade, data=loans, family=binomial(link=logit))
+plot(fitLC)
+summary(fitLC)
 
 
-#and were good. 
+
+#I need some grapical way to see everything 
+
+
 
 
 

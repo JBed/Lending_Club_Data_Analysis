@@ -56,7 +56,19 @@ summary(outcv.6)
 
 plot(outcv.6)
 
+##
+
+library(rms)
+lrmMode <- lrm(loan_status ~  loan_amnt + term + last_fico_range_high + installment + home_ownership + annual_inc + is_inc_v, data=loans)
+
+plot(lrmMode)
+
+outa <- roc(lrmMode)
+
+?pROC
+
 #nwo let's say that we have a new model
+
 
 
 

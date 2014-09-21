@@ -1,0 +1,118 @@
+
+
+> summary(glm.1) # show results
+
+Call:
+glm(formula = current ~ loan_amnt + term + last_fico_range_high + 
+    installment + home_ownership + annual_inc + is_inc_v, family = binomial(link = logit), 
+    data = loans)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.9872   0.1233   0.1754   0.2350   0.5088  
+
+Coefficients:
+                          Estimate Std. Error z value Pr(>|z|)
+(Intercept)              3.272e+00  4.167e+00   0.785    0.432
+loan_amnt                2.014e-04  2.477e-04   0.813    0.416
+term 60 months          -3.010e-01  1.059e+00  -0.284    0.776
+last_fico_range_high    -1.363e-03  5.844e-03  -0.233    0.816
+installment             -3.294e-03  7.788e-03  -0.423    0.672
+home_ownershipOWN        1.274e+00  1.056e+00   1.207    0.227
+home_ownershipRENT       7.075e-01  4.932e-01   1.435    0.151
+annual_inc               7.922e-06  8.094e-06   0.979    0.328
+is_inc_vSource Verified -8.169e-01  5.549e-01  -1.472    0.141
+is_inc_vVerified        -9.478e-01  6.159e-01  -1.539    0.124
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 203.73  on 997  degrees of freedom
+Residual deviance: 189.81  on 988  degrees of freedom
+AIC: 209.81
+
+Number of Fisher Scoring iterations: 7
+
+
+
+
+
+---
+
+Call:
+glm(formula = current ~ loan_amnt + term + last_fico_range_high + 
+    installment + home_ownership + annual_inc + is_inc_v, family = binomial(link = cloglog), 
+    data = loans)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.9571   0.1070   0.1718   0.2426   0.4924  
+
+Coefficients:
+                          Estimate Std. Error z value Pr(>|z|)  
+(Intercept)              1.099e+00  1.128e+00   0.974   0.3300  
+loan_amnt                6.726e-05  6.312e-05   1.066   0.2866  
+term 60 months          -1.428e-01  2.855e-01  -0.500   0.6170  
+last_fico_range_high    -2.572e-04  1.580e-03  -0.163   0.8707  
+installment             -1.249e-03  1.975e-03  -0.632   0.5271  
+home_ownershipOWN        3.620e-01  2.574e-01   1.406   0.1597  
+home_ownershipRENT       2.081e-01  1.354e-01   1.537   0.1242  
+annual_inc               2.302e-06  2.082e-06   1.106   0.2687  
+is_inc_vSource Verified -2.408e-01  1.520e-01  -1.584   0.1131  
+is_inc_vVerified        -3.081e-01  1.759e-01  -1.752   0.0798 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 203.73  on 997  degrees of freedom
+Residual deviance: 188.39  on 988  degrees of freedom
+AIC: 208.39
+
+Number of Fisher Scoring iterations: 9
+
+---
+
+> anova(glm.1,glm.2,test="Chi")
+Analysis of Deviance Table
+
+Model 1: current ~ loan_amnt + term + last_fico_range_high + installment + 
+    home_ownership + annual_inc + is_inc_v
+Model 2: current ~ loan_amnt + term + last_fico_range_high + installment + 
+    home_ownership + annual_inc + is_inc_v
+  Resid. Df Resid. Dev Df Deviance Pr(>Chi)
+1       988     189.81                     
+2       988     188.38  0   1.4283         
+
+
+---now some random forrests
+
+
+> rf1 <- randomForest(current ~  loan_amnt + term + last_fico_range_high + installment + home_ownership + annual_inc + is_inc_v, loans, keep.forest=TRUE,importance=TRUE)
+> importance(rf1)
+                             0           1 MeanDecreaseAccuracy MeanDecreaseGini
+loan_amnt            -8.434018 15.64530594           15.5938108        8.1819110
+term                 -1.212498  2.88420212            2.8091637        0.5377215
+last_fico_range_high -3.780242  5.63528216            5.0791942        7.5223686
+installment          -8.472920 16.16471802           16.0785640       10.6740529
+home_ownership       -3.347302 -2.54425046           -2.9041166        1.1733490
+annual_inc           -1.213733 -0.04151737           -0.2034149        8.4624576
+is_inc_v             -4.064321  4.78010238            4.3673492        1.6569247
+
+
+#---
+
+                                    0          1 MeanDecreaseAccuracy MeanDecreaseGini
+loan_amnt                  -3.5937217  6.8751354            6.7968167        6.2556009
+term                       -1.7060057  0.6592340            0.4691752        0.3749641
+last_fico_range_high       -1.8967047  3.6351473            3.3122374        6.3758084
+installment                -5.8890601  7.9710902            7.7790574        7.0602315
+home_ownership             -1.1285170 -1.9208531           -1.9945409        1.0231900
+annual_inc                 -1.7302681  3.3042870            3.1131181        6.8806126
+is_inc_v                   -1.0811293  1.7852876            1.7203109        1.5411432
+int_rate                    0.9585333  1.6429007            1.7445873        4.7687160
+as.factor(loans$sub_grade)  0.2773714  0.9104985            0.8969291        4.3771127
+as.factor(loans$grade)      1.5932317  2.2070462            2.3053169        1.0339226
+
+
+
+

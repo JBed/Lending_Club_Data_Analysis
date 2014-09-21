@@ -107,7 +107,7 @@ summary(fitLC)
 
 
 #I need some grapical way to see everything 
-
+#need to make ROC curves!!!
 
 
 

@@ -62,3 +62,37 @@ varImpPlot(rf2)
 
 #i'm ready to start writing. 
 
+
+## tring lasso 
+install.packages("glmnet", repos = "http://cran.us.r-project.org")
+library(glmnet)
+load("QSExample.RData")
+
+
+fit = glmnet(x, y)
+plot(fit)
+cvfit = cv.glmnet(x, y)
+
+plot(cvfit)
+
+
+cvfit$lambda.min
+
+coef(cvfit, s = "lambda.min")
+
+
+library(lars)
+install.packages("lars")
+
+model.lasso <- lars(x, y, type="lasso")
+
+y <- as.numeric(train[,9])
+x <- as.matrix(train[,1:8])
+
+
+
+
+##glmmod<-glmnet(current,y=as.factor(asthma),alpha=1,family='binomial')
+
+
+

@@ -10,10 +10,18 @@ The original data set can be downloaded from [here](https://www.lendingclub.com/
 
 ###Part1-LASSO
 
-I use LASSO in the glmnet package to build a perdictor of loan sucess. 
+Used LASSO in the glmnet package to build a perdictor of loan sucess. 
 
 
 
 ###Part2-LDA
 
-I use 
+used Latent Dirichlet allocation (LDA) in the RTextTools package to analyse the reasons people are borrowing money. 
+
+
+###Part3-Final
+
+Used the LDA resulte as covariats in a new LASSO model. 
+
+
+

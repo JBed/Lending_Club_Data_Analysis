@@ -1,15 +1,19 @@
 Analysis of the Lending Club data set. 
 ===
 
-This is a test 
+See my blog post at http://jbedford.net/credit
 
-```r
-#set the working dir
-setwd("~/2.Github/2.DataSci_Repos/1.Lending_Club/Lending_Club_Data_Analysis")
 
-#laod some packages
-library(ggplot2)
-library(maps)
-```
+The original data set can be downloaded from [here](https://www.lendingclub.com/info/download-data.action)
 
-And this seems to be working. 
+
+
+###Part1-LASSO
+
+I use LASSO in the glmnet package to build a perdictor of loan sucess. 
+
+
+
+###Part2-LDA
+
+I use 

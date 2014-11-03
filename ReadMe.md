@@ -10,7 +10,7 @@ The original data set can be downloaded from [here](https://www.lendingclub.com/
 
 ### /Part1-LASSO
 
-Used LASSO in the "glmnet" package in R to build a predictor of loan success. This is a test /Part1-LASSO 
+Used LASSO in the "glmnet" package in R to build a predictor of loan success. This is a test [Part1-LASSO](/Part1-LASSO) 
 
 
 

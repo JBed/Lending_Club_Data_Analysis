@@ -1,4 +1,4 @@
-Analysis of the Lending Club data set. 
+Analysis of the Lending Club data sets. 
 ===
 
 See my blog post at http://jbedford.net/p2plending/
@@ -8,20 +8,19 @@ The original data set can be downloaded from [here](https://www.lendingclub.com/
 
 
 
-### /Part1-LASSO
+###[Part1-LASSO](/Part1-LASSO)
 
-Used LASSO in the "glmnet" package in R to build a predictor of loan success. This is a test [Part1-LASSO](/Part1-LASSO) 
-
-
-
-### /Part2-LDA
-
-used Latent Dirichlet allocation (LDA) in the gensim package in python to analyse the reasons people are borrowing money. 
+Used LASSO in the "glmnet" package in R to build a predictor of loan success.
 
 
-### /Part 3-Final
+
+### [Part2-LDA](/Part2-LDA)
+
+used Latent Dirichlet allocation (LDA) in the gensim package in python to analyse the reasons people are borrowing money.
+
+
+### [Part 3-Final](/Part 3-Final)
 
 Used the LDA result as covariates in a new LASSO model. This seems to improve prediction accuracy.
-
 
 

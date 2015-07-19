@@ -1,26 +1,8 @@
 Analysis of the Lending Club data sets. 
 ===
 
-See my blog post at http://jbedford.net/p2plending/
 
+The [Lending Club](www.lendingclub.com) (TLC) is an online lending marketplace that matches borrowers and lenders. Borrowers apply to TLC and, if accepted, their application will be listed for investors to review. Anyone with money can sign up to fund these loans.
 
-The original data set can be downloaded from [here](https://www.lendingclub.com/info/download-data.action)
-
-
-
-###[Part1-LASSO](/Part1-LASSO)
-
-Used LASSO in the "glmnet" package in R to build a predictor of loan success.
-
-
-
-### [Part2-LDA](/Part2-LDA)
-
-used Latent Dirichlet allocation (LDA) in the gensim package in python to analyse the reasons people are borrowing money.
-
-
-### [Part3-Final](/Part3-Final)
-
-Used the LDA result as covariates in a new LASSO model. This seems to improve prediction accuracy.
 
 

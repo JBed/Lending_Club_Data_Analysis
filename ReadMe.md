@@ -12,5 +12,18 @@ LDA posits that the collection of words that make up a document each belong to a
 
 ### Results and Discussion
 
+After removing stop words, the topics are:
 
+```sh
+Topic #1: loan, APR, bankruptcy, credit, pay, cards, interest, cards, bills, minimum.
+Topic #2: Student, debt, consolidating, payment, working, school, unemployed, job
+Topic #3: medical, scare, death, debt, sickness, health, heart, bankruptcies, disease
+Topic #4: home, office, improvement, car, motorcycle, repairs, chrysler 
+Topic #5: Christmas, time, ASAP, holidays, engagement, life, trust
+Topic #6: legal, run, simplify, jail, incarcerated, life, help.
+```
+
+I decided to stop after six topics as the topics stated to become much more noise after this. The terms ranked according to how well they represent the their category. 
+
+Reguarding the medical debts, this is a well [known](http://www.theatlantic.com/health/archive/2014/10/why-americans-are-drowning-in-medical-debt/381163/) problem in the US and not suprizing it show up here.
 

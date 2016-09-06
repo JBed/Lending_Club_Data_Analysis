@@ -25,12 +25,12 @@ Topic #6: legal, run, simplify, jail, incarcerated, life, help.
 
 I decided to stop after six topics as the topics stated to become much more noise after this. The terms ranked according to how well they represent the their category. 
 
-Overall, we find that a almost a quarter of people borrowing money from the lending club are doing so because of unforeseen expenses (topic 3 and 6). Reguarding the medical debts, this is a well [known](http://www.theatlantic.com/health/archive/2014/10/why-americans-are-drowning-in-medical-debt/381163/) problem in the US and not suprizing it show up here.
+Overall, we find that almost a quarter of people borrowing money from the lending club are doing so because of unforeseen expenses (topic 3 and 6). Reguarding the medical debts, this is a well [known](http://www.theatlantic.com/health/archive/2014/10/why-americans-are-drowning-in-medical-debt/381163/) problem in the US and not suprizing it shows up here.
 
 
 ### Future work
 
-A natural and very useful way to extract this work would be to quantify the correlation between applicants clustered as unforeseen expenses (topic 3 and 6) and their ability to ultimately repay their loan.
+A natural and very useful way to extract this work would be to quantify the correlation between applicants clustered as unforeseen expenses (topic 3 and 6) and their ability to ultimately repay their loans.
 
 
 
